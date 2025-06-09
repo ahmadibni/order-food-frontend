@@ -1,12 +1,13 @@
+import Header from "./components/Header";
+
 function App() {
   return (
-    <>
-      <main className="bg-gray-100">
-        <header className="">
-          <h1>MakanKi'</h1>
-        </header>
-      </main>
-    </>
+    <main className="bg-gray-200 min-h-screen p-5">
+      <Header />
+      <div>
+
+      </div>
+    </main>
   );
 }
 
