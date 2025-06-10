@@ -16,7 +16,9 @@ const Header: FC = () => {
     <header className="bg-gray-100 py-4 px-6 rounded-full">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-orange-500">MakanKi'</h1>
+        <h1 className="text-2xl font-bold text-orange-500">
+          Makan<span className="text-orange-800">Ki'</span>
+        </h1>
 
         {/* Navigation Menu */}
         <nav className="hidden sm:block">
@@ -32,7 +34,7 @@ const Header: FC = () => {
           <button className="text-sm text-gray-600">Search</button>
           <div className="flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center space-x-2 py-2 px-5 cursor-pointer">
             <TbShoppingBag className="w-5 h-5 text-white" />
-            <span className="text-sm text-white font-light">Cart</span>
+            <span className="text-sm text-white font-medium">Cart</span>
           </div>
         </div>
       </div>
