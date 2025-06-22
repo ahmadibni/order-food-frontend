@@ -1,21 +1,53 @@
 import useCartStore from "../store/useCartStore";
 import CartItemList from "./CartItemList";
+import { MdShoppingCart } from "react-icons/md";
 
 const CartSidebar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
 
   return (
-    <div className="w-80 bg-gray-100 mt-6 p-6 h-screen rounded-2xl overflow-y-scroll">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-semibold">My Order</h1>
-        <p className="text-sm text-gray-500">{cartItems.length} Orders</p>
+    // Perubahan utama: Hapus mt-6, tambahkan max-h-screen dan overflow-hidden
+    <div className="w-80 bg-gray-100 mt-6 p-6 rounded-2xl flex flex-col overflow-hidden max-h-screen">
+      {/* Header */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-semibold">My Order</h1>
+          <p className="text-sm text-gray-500">{cartItems.length} Orders</p>
+        </div>
       </div>
 
-      <div className="space-y-4 mb-6">
-        {cartItems.map((item) => (
-          <CartItemList key={item.foodId} item={item} />
-        ))}
-      </div>
+      {/* Cart Content */}
+      {cartItems.length === 0 ? (
+        <div className="flex flex-col items-center justify-center text-gray-400 text-sm gap-2 py-12 flex-grow">
+          <MdShoppingCart className="w-10 h-10" />
+          <p>Keranjang masih kosong</p>
+        </div>
+      ) : (
+        // Perubahan: Gunakan flex-grow dan overflow-y-auto untuk scroll
+        <div className="flex-grow min-h-0 overflow-y-auto">
+          <div className="space-y-4 pr-1">
+            {cartItems.map((item) => (
+              <CartItemList key={item.foodId} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      {cartItems.length > 0 && (
+        <div className="pt-4 border-t border-gray-300 mt-4">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm font-medium text-gray-700">Total</span>
+            <span className="text-lg font-semibold text-red-500">
+              Rp.{totalPrice.toLocaleString()}
+            </span>
+          </div>
+          <button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xl transition-colors">
+            Order Sekarang
+          </button>
+        </div>
+      )}
     </div>
   );
 };
