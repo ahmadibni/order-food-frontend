@@ -5,6 +5,7 @@ interface CartState {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (foodId: string) => void;
+  totalPrice: () => number;
 }
 
 const useCartStore = create<CartState>((set, get) => ({
@@ -37,6 +38,8 @@ const useCartStore = create<CartState>((set, get) => ({
       cartItems: state.cartItems.filter((item) => item.foodId !== foodId),
     }));
   },
+  totalPrice: () =>
+    get().cartItems.reduce((total, item) => total + item.subtotal, 0),
 }));
 
 export default useCartStore;
