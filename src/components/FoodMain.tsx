@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import FoodDetail from "./FoodDetail";
 import type { Food } from "../types/Food";
+import useCartStore from "../store/useCartStore";
 
 // Define interface for Food data
 
 const FoodMain = () => {
-  // Specify type for foods state
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -48,6 +50,19 @@ const FoodMain = () => {
 
     fetchFoods();
   }, []);
+
+  const handleAddToCartClick = (food: Food) => {
+    const { _id, name, image } = food;
+    const cartItem = {
+      foodId: _id,
+      name,
+      price: food.price,
+      quantity: 1,
+      subtotal: food.price,
+      image,
+    };
+    addToCart(cartItem);
+  };
 
   if (loading) {
     return <div className="text-center py-8">Loading foods...</div>;
@@ -112,7 +127,13 @@ const FoodMain = () => {
                     {food.description}
                   </p>
                   <div className="flex justify-between items-center">
-                    <button className="bg-gray-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-gray-700 transition-colors">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddToCartClick(food);
+                      }}
+                      className="bg-gray-800 text-white px-4 py-2 rounded-xl text-sm hover:bg-gray-700 transition-colors cursor-pointer"
+                    >
                       Add to Cart
                     </button>
                   </div>

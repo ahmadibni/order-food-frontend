@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import FoodMain from "./components/FoodMain";
+import CartSidebar from "./components/CartSidebar";
 
 function App() {
   return (
@@ -13,9 +14,7 @@ function App() {
         </div>
 
         {/* Cart Sidebar */}
-        <div className="w-80 bg-gray-100 mt-6 p-6 h-screen rounded-2xl overflow-y-auto">
-          <h1 className="text-xl font-semibold mb-6">My Order</h1>
-        </div>
+        <CartSidebar />
       </div>
     </main>
   );
