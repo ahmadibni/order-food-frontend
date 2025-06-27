@@ -17,7 +17,7 @@ const Header: FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-2xl font-bold text-orange-500">
-          Makan<span className="text-orange-800">Ki'</span>
+          Makan<span className="text-red-500">Ki'</span>
         </h1>
 
         {/* Navigation Menu */}

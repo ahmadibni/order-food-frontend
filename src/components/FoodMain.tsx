@@ -63,7 +63,7 @@ const FoodMain = () => {
   }
 
   return (
-    <div className="bg-gray-100 p-6 rounded-2xl">
+    <div className="bg-gray-100 p-6 rounded-3xl">
       {/* Food Categories */}
       <div>
         <div className="flex items-center gap-x-2 mb-4">
