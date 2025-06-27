@@ -4,7 +4,7 @@ import { MdShoppingCart } from "react-icons/md";
 
 const CartSidebar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
-  const totalPrice = cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+  const totalPrice = useCartStore((state) => state.totalPrice());
 
   return (
     // Perubahan utama: Hapus mt-6, tambahkan max-h-screen dan overflow-hidden
@@ -43,8 +43,8 @@ const CartSidebar = () => {
               Rp.{totalPrice.toLocaleString()}
             </span>
           </div>
-          <button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xl transition-colors">
-            Order Sekarang
+          <button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-xl transition-colors cursor-pointer">
+            Order Now !
           </button>
         </div>
       )}

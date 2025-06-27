@@ -4,17 +4,20 @@ import { FaArrowLeft } from "react-icons/fa";
 import FoodDetail from "./FoodDetail";
 import type { Food } from "../types/Food";
 import useCartStore from "../store/useCartStore";
+import useFoodStore from "../store/useFoodStore";
 
 // Define interface for Food data
 
 const FoodMain = () => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const foods = useFoodStore((state) => state.foods);
+  const setFoods = useFoodStore((state) => state.setFoods);
 
-  const [foods, setFoods] = useState<Food[]>([]);
+  const selectedFood = useFoodStore((state) => state.selectedFood);
+  const selectFood = useFoodStore((state) => state.selectFood);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
-  const [selectedFood, setSelectedFood] = useState<Food | null>(null);
 
   const categories = [
     "Pasta",
@@ -27,11 +30,11 @@ const FoodMain = () => {
   ];
 
   function handleSelectFood(food: Food) {
-    setSelectedFood(food);
+    selectFood(food);
   }
 
   function handleGetBack() {
-    setSelectedFood(null);
+    selectFood(null);
   }
 
   useEffect(() => {
@@ -51,17 +54,8 @@ const FoodMain = () => {
     fetchFoods();
   }, []);
 
-  const handleAddToCartClick = (food: Food) => {
-    const { _id, name, image } = food;
-    const cartItem = {
-      foodId: _id,
-      name,
-      price: food.price,
-      quantity: 1,
-      subtotal: food.price,
-      image,
-    };
-    addToCart(cartItem);
+  const handleAddToCartClick = (food: Food, quantity?: number) => {
+    addToCart(food, quantity);
   };
 
   if (loading) {

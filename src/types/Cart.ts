@@ -6,3 +6,5 @@ export interface CartItem {
   subtotal: number;
   image: string;
 }
+
+export type CartAdd = Omit<CartItem, "quantity" | "subtotal">;

@@ -5,6 +5,20 @@ import type { CartItem } from "../types/Cart";
 
 const CartItemList = ({ item }: { item: CartItem }) => {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const updateCartItem = useCartStore((state) => state.updateCartItem);
+
+  const handleIncrementQuantity = (item: CartItem) => {
+    const updatedQuantity = item.quantity + 1;
+    updateCartItem(item.foodId, updatedQuantity);
+  };
+
+  const handleDecreementQuantity = (item: CartItem) => {
+    if (item.quantity > 1) {
+      const updatedQuantity = item.quantity - 1;
+      updateCartItem(item.foodId, updatedQuantity);
+    }
+  };
+
   return (
     <div
       key={item.foodId}
@@ -30,7 +44,9 @@ const CartItemList = ({ item }: { item: CartItem }) => {
       <div className="flex flex-col justify-between space-y-2">
         <div className="flex items-center space-x-2">
           <button
-            onClick={() => {}}
+            onClick={() => {
+              handleDecreementQuantity(item);
+            }}
             className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
           >
             <TiMinus className="h-3 w-3" />
@@ -39,7 +55,9 @@ const CartItemList = ({ item }: { item: CartItem }) => {
             {item.quantity}
           </span>
           <button
-            onClick={() => {}}
+            onClick={() => {
+              handleIncrementQuantity(item);
+            }}
             className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
           >
             <TiPlus className="h-3 w-3" />

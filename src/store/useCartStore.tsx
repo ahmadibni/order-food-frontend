@@ -1,16 +1,27 @@
 import { create } from "zustand";
 import type { CartItem } from "../types/Cart";
+import type { Food } from "../types/Food";
 
 interface CartState {
   cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  addToCart: (food: Food, quantity: number | undefined) => void;
+  updateCartItem: (foodId: string, quantity: number) => void;
   removeFromCart: (foodId: string) => void;
   totalPrice: () => number;
 }
 
 const useCartStore = create<CartState>((set, get) => ({
   cartItems: [],
-  addToCart: (item) => {
+  addToCart: (food, quantity = 1) => {
+    const item: CartItem = {
+      foodId: food._id,
+      name: food.name,
+      price: food.price,
+      quantity,
+      subtotal: food.price * quantity,
+      image: food.image,
+    };
+
     const existingCartItem = get().cartItems.find(
       (cartItem) => cartItem.foodId === item.foodId
     );
@@ -21,17 +32,37 @@ const useCartStore = create<CartState>((set, get) => ({
           cartItem.foodId === item.foodId
             ? {
                 ...cartItem,
-                quantity: cartItem.quantity + 1,
-                subtotal: (cartItem.quantity + 1) * cartItem.price,
+                quantity: cartItem.quantity + quantity,
+                subtotal: (cartItem.quantity + quantity) * cartItem.price,
               }
             : cartItem
         ),
       }));
     } else {
       set((state) => ({
-        cartItems: [...state.cartItems, item],
+        cartItems: [
+          ...state.cartItems,
+          {
+            ...item,
+            quantity,
+            subtotal: item.price * quantity,
+          },
+        ],
       }));
     }
+  },
+  updateCartItem: (foodId, quantity) => {
+    set((state) => ({
+      cartItems: state.cartItems.map((cartItem) =>
+        foodId === cartItem.foodId
+          ? {
+              ...cartItem,
+              quantity,
+              subtotal: quantity * cartItem.price,
+            }
+          : cartItem
+      ),
+    }));
   },
   removeFromCart: (foodId) => {
     set((state) => ({

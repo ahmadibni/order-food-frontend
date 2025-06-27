@@ -1,7 +1,10 @@
 import { useState } from "react";
 import type { Food } from "../types/Food";
+import useCartStore from "../store/useCartStore";
 
 const FoodDetail = ({ food }: { food: Food }) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const [quantity, setQuantity] = useState<number>(1);
   const price = food.price;
 
@@ -14,6 +17,11 @@ const FoodDetail = ({ food }: { food: Food }) => {
       setQuantity((prev) => prev - 1);
     }
   };
+
+  const handleAddToCartClick = (food: Food, quantity?: number) => {
+    addToCart(food, quantity);
+  };
+
   return (
     <div className="grid grid-cols-2 gap-8">
       <img src={food.image} className="w-full h-96 object-cover rounded-2xl" />
@@ -45,7 +53,12 @@ const FoodDetail = ({ food }: { food: Food }) => {
             <span className="text-xl font-bold text-gray-800 ml-4">
               Rp{(price * quantity).toLocaleString("id-ID")}
             </span>
-            <button className="bg-gray-800 hover:bg-gray-700 transition-colors py-2 px-5 rounded-full text-white cursor-pointer">
+            <button
+              onClick={() => {
+                handleAddToCartClick(food, quantity);
+              }}
+              className="bg-gray-800 hover:bg-gray-700 transition-colors py-2 px-5 rounded-full text-white cursor-pointer"
+            >
               Add to Order
             </button>
           </div>
