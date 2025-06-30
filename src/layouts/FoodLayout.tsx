@@ -1,6 +1,6 @@
 import CartSidebar from "@/components/CartSidebar";
 import { FaArrowLeft } from "react-icons/fa";
-import { Outlet } from "react-router";
+import { Link, Outlet } from "react-router";
 
 const FoodLayout = () => {
   const categories = [
@@ -21,7 +21,9 @@ const FoodLayout = () => {
           {/* Food Categories */}
           <div>
             <div className="flex items-center gap-x-2 mb-4">
-              <FaArrowLeft className="cursor-pointer" />
+              <Link to="/">
+                <FaArrowLeft className="cursor-pointer" />
+              </Link>
 
               <h1 className="text-xl font-semibold">Main Category</h1>
             </div>
@@ -36,8 +38,8 @@ const FoodLayout = () => {
               ))}
             </div>
           </div>
+          <Outlet />
         </div>
-        <Outlet />
       </div>
 
       {/* Cart Sidebar - Tambahkan self-start untuk alignment */}
