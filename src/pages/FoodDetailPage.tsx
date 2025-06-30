@@ -1,12 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Food } from "../types/Food";
 import useCartStore from "../store/useCartStore";
+import { useParams } from "react-router";
+import useFoodStore from "@/store/useFoodStore";
+import { getFoodById } from "@/services/foodService";
 
-const FoodDetail = ({ food }: { food: Food }) => {
+const FoodDetailPage = () => {
+  const { foodId } = useParams();
+
   const addToCart = useCartStore((state) => state.addToCart);
+  const setFood = useFoodStore((state) => state.setFood);
+  const food = useFoodStore((state) => state.food);
 
   const [quantity, setQuantity] = useState<number>(1);
-  const price = food.price;
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchFoodById = async () => {
+      try {
+        setLoading(true);
+        if (!foodId) return;
+        const data = await getFoodById(foodId);
+        setFood(data);
+      } catch (err) {
+        setError("Failed to fetch foods. Please try again later.");
+        console.error("Error fetching foods:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFoodById();
+  }, []);
 
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
@@ -21,6 +47,20 @@ const FoodDetail = ({ food }: { food: Food }) => {
   const handleAddToCartClick = (food: Food, quantity?: number) => {
     addToCart(food, quantity);
   };
+
+  if (loading) {
+    return <div>Loading food detail...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  if (!food) {
+    return <div>No food found</div>;
+  }
+
+  const price = food.price;
 
   return (
     <div className="grid grid-cols-2 gap-8">
@@ -68,4 +108,4 @@ const FoodDetail = ({ food }: { food: Food }) => {
   );
 };
 
-export default FoodDetail;
+export default FoodDetailPage;

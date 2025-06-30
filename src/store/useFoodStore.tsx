@@ -4,15 +4,15 @@ import type { Food } from "../types/Food";
 interface FoodState {
   foods: Food[];
   setFoods: (foods: Food[]) => void;
-  selectedFood: Food | null;
-  selectFood: (food: Food | null) => void;
+  food: Food | null;
+  setFood: (food: Food) => void;
 }
 
 const useFoodStore = create<FoodState>((set) => ({
   foods: [],
   setFoods: (foods: Food[]) => set({ foods }),
-  selectedFood: null,
-  selectFood: (food: Food | null) => set({ selectedFood: food }),
+  food: null,
+  setFood: (food: Food) => set({ food }),
 }));
 
 export default useFoodStore;
