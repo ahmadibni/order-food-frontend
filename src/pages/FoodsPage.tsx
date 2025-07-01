@@ -42,8 +42,6 @@ const FoodsPage = () => {
     addToCart(food, quantity);
   };
 
-  console.log(foods);
-
   if (loading) {
     return <div className="text-center py-8">Loading foods...</div>;
   }
