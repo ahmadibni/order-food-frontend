@@ -67,17 +67,23 @@ const FoodDetailPage = () => {
   const price = food.price;
 
   return (
-    <div className="grid grid-cols-2 gap-8">
-      <img src={food.image} className="w-full h-96 object-cover rounded-2xl" />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <img
+        src={food.image}
+        className="w-full h-64 md:h-96 object-cover rounded-2xl mb-6 md:mb-0"
+        alt={food.name}
+      />
 
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between h-full">
         <div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-3">{food.name}</h1>
-          <p className="text-gray-600 mb-6 leading-relaxed">
+          <h1 className="text-2xl md:text-5xl font-bold text-gray-900 mb-3">
+            {food.name}
+          </h1>
+          <p className="text-gray-600 mb-6 leading-relaxed text-base md:text-lg">
             {food.description}
           </p>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center space-x-4">
             <button
               onClick={handleDecreement}
@@ -93,8 +99,8 @@ const FoodDetailPage = () => {
               <span className="text-xl">+</span>
             </button>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-bold text-gray-800 ml-4">
+          <div className="flex justify-between items-center gap-2">
+            <span className="text-xl font-bold text-gray-800 ml-0 md:ml-4">
               Rp{(price * quantity).toLocaleString("id-ID")}
             </span>
             <button

@@ -17,12 +17,11 @@ const CartSidebar = () => {
   const totalPrice = useCartStore((state) => state.totalPrice());
 
   return (
-    // Perubahan utama: Hapus mt-6, tambahkan max-h-screen dan overflow-hidden
-    <div className="w-80 bg-gray-100 mt-6 p-6 rounded-3xl flex flex-col overflow-hidden max-h-screen">
+    <div className="w-full md:w-80 bg-gray-100 p-4 mt-6 md:p-6 rounded-2xl md:rounded-3xl flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold">My Order</h1>
+          <h1 className="text-lg md:text-xl font-semibold">My Order</h1>
           <p className="text-sm text-gray-500">{cartItems.length} Orders</p>
         </div>
       </div>
@@ -34,7 +33,6 @@ const CartSidebar = () => {
           <p>Keranjang masih kosong</p>
         </div>
       ) : (
-        // Perubahan: Gunakan flex-grow dan overflow-y-auto untuk scroll
         <div className="flex-grow min-h-0 overflow-auto">
           <div className="space-y-4 pr-1">
             {cartItems.map((item) => (
