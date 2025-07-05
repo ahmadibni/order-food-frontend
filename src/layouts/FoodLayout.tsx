@@ -42,7 +42,7 @@ const FoodLayout = () => {
       </div>
 
       {/* Cart Sidebar - Responsive width and margin */}
-      <div className="w-full md:w-80 self-stretch md:self-start">
+      <div className="w-full md:w-80 self-stretch">
         <CartSidebar />
       </div>
     </div>

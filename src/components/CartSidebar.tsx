@@ -17,7 +17,7 @@ const CartSidebar = () => {
   const totalPrice = useCartStore((state) => state.totalPrice());
 
   return (
-    <div className="w-full md:w-80 bg-gray-100 p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
+    <div className="bg-gray-100 p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
