@@ -64,19 +64,20 @@ const FoodsPage = () => {
               onClick={() => handleNavigateToDetail(food._id)}
               className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
             >
-              <div className="aspect-w-1 aspect-h-1 w-full">
+              <div className="w-full aspect-[4/3]">
                 <img
                   src={food.image}
                   alt={food.name}
                   className="object-cover w-full h-full"
                 />
               </div>
+
               <div className="p-3 sm:p-4 flex flex-col flex-1">
                 <div className="flex flex-col justify-between items-start mb-2">
-                  <h3 className="font-semibold text-base sm:text-lg">
+                  <h3 className="font-semibold text-sm md:text-base sm:text-lg">
                     {food.name}
                   </h3>
-                  <p className="font-medium text-orange-600 text-sm sm:text-base">
+                  <p className="font-medium text-orange-600 text-sm md:text-base">
                     Rp. {food.price.toLocaleString()}
                   </p>
                 </div>

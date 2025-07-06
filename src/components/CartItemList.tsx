@@ -22,7 +22,7 @@ const CartItemList = ({ item }: { item: CartItem }) => {
   return (
     <div
       key={item.foodId}
-      className="relative flex items-center space-x-3 p-3 border-[1px] border-dashed border-gray-400 hover:bg-gray-50 rounded-lg transition-colors"
+      className="relative grid grid-cols-3 grid-rows-2 items-center space-x-3 p-3 border-[1px] border-dashed border-gray-400 hover:bg-gray-50 rounded-lg transition-colors"
     >
       <button
         onClick={() => removeFromCart(item.foodId)}
@@ -33,36 +33,36 @@ const CartItemList = ({ item }: { item: CartItem }) => {
       <img
         src={item.image}
         alt={item.name}
-        className="w-16 h-16 rounded-full object-cover"
+        className="w-16 h-16 row-span-2 rounded-full object-cover"
       />
-      <div className="flex-1">
+      <div className="col-span-2">
         <h3 className="font-medium text-sm text-gray-900">{item.name}</h3>
+      </div>
+      <div className="col-start-2 row-start-2">
         <p className="text-sm font-semibold text-red-500">
           Rp.{item.subtotal.toLocaleString()}
         </p>
       </div>
-      <div className="flex flex-col justify-between space-y-2">
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => {
-              handleDecreementQuantity(item);
-            }}
-            className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
-          >
-            <TiMinus className="h-3 w-3" />
-          </button>
-          <span className="w-6 text-center text-sm font-medium">
-            {item.quantity}
-          </span>
-          <button
-            onClick={() => {
-              handleIncrementQuantity(item);
-            }}
-            className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
-          >
-            <TiPlus className="h-3 w-3" />
-          </button>
-        </div>
+      <div className="flex items-center col-start-3 row-start-2">
+        <button
+          onClick={() => {
+            handleDecreementQuantity(item);
+          }}
+          className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
+        >
+          <TiMinus className="h-3 w-3" />
+        </button>
+        <span className="w-6 text-center text-sm font-medium">
+          {item.quantity}
+        </span>
+        <button
+          onClick={() => {
+            handleIncrementQuantity(item);
+          }}
+          className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors cursor-pointer"
+        >
+          <TiPlus className="h-3 w-3" />
+        </button>
       </div>
     </div>
   );
