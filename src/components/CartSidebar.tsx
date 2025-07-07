@@ -17,7 +17,7 @@ const CartSidebar = () => {
   const totalPrice = useCartStore((state) => state.totalPrice());
 
   return (
-    <div className="bg-gray-100 p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
+    <div className="hidden bg-gray-100 p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl md:flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
@@ -33,7 +33,7 @@ const CartSidebar = () => {
           <p>Keranjang masih kosong</p>
         </div>
       ) : (
-        <div className="flex-grow min-h-0 overflow-auto">
+        <div className="flex-grow min-h-0 p-2 overflow-y-auto">
           <div className="space-y-4 pr-1">
             {cartItems.map((item) => (
               <CartItemList key={item.foodId} item={item} />

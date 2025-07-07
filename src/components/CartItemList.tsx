@@ -30,16 +30,20 @@ const CartItemList = ({ item }: { item: CartItem }) => {
       >
         <RxCross2 className="h-3 w-3 text-gray-500" />
       </button>
-      <img
-        src={item.image}
-        alt={item.name}
-        className="w-16 h-16 row-span-2 rounded-full object-cover"
-      />
+      <div className="row-span-2 flex items-center">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
+        />
+      </div>
       <div className="col-span-2">
-        <h3 className="font-medium text-sm text-gray-900">{item.name}</h3>
+        <h3 className="font-medium md:text-sm lg:text-base text-gray-900">
+          {item.name}
+        </h3>
       </div>
       <div className="col-start-2 row-start-2">
-        <p className="text-sm font-semibold text-red-500">
+        <p className="text-xs md:text-sm lg:text-base font-semibold text-red-500">
           Rp.{item.subtotal.toLocaleString()}
         </p>
       </div>
@@ -52,7 +56,7 @@ const CartItemList = ({ item }: { item: CartItem }) => {
         >
           <TiMinus className="h-3 w-3" />
         </button>
-        <span className="w-6 text-center text-sm font-medium">
+        <span className="w-6 text-center md:text-sm lg:text-base font-medium">
           {item.quantity}
         </span>
         <button
