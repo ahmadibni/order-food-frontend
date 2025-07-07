@@ -80,7 +80,7 @@ const Header = () => {
 
       {/* Drawer untuk Cart */}
       <Drawer open={isCartOpen} direction="right" onOpenChange={setIsCartOpen}>
-        <DrawerContent className="bg-white h-full w-4/5 sm:w-2/5 ml-auto rounded-tl-3xl rounded-bl-3xl shadow-lg transition-all duration-300 ease-in-out">
+        <DrawerContent className="bg-white h-full w-full sm:w-4/5 md:w-2/5 ml-auto rounded-tl-3xl rounded-bl-3xl shadow-lg flex flex-col transition-all duration-300 ease-in-out">
           <DrawerHeader className="flex flex-row justify-between">
             <DrawerTitle className="flex flex-col items-center justify-between">
               <h1 className="text-lg md:text-xl font-semibold">My Order</h1>
@@ -92,7 +92,7 @@ const Header = () => {
               </div>
             </DrawerClose>
           </DrawerHeader>
-          <DrawerDescription className="mt-6 px-4">
+          <DrawerDescription className="mt-6 px-4 flex-grow overflow-y-auto">
             {/* Contoh isi cart, bisa ganti dengan data dari state/cart store */}
             {cartItems.length === 0 ? (
               <div className="flex flex-col items-center justify-center text-gray-400 text-sm gap-2 py-12 flex-grow">
