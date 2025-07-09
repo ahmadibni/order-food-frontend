@@ -18,6 +18,7 @@ import { RxCross2 } from "react-icons/rx";
 import useCartStore from "@/store/useCartStore";
 import { MdShoppingCart } from "react-icons/md";
 import CartItemList from "./CartItemList";
+import { Badge } from "./ui/badge";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -70,9 +71,9 @@ const Header = () => {
               Cart
             </span>
             {cartItems.length > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] sm:text-xs font-bold h-5 w-5 sm:h-6 sm:w-6 rounded-full flex items-center justify-center shadow-md ring-2 ring-white">
+              <Badge variant="destructive" className="absolute -top-1.5 -right-1.5">
                 {cartItems.length}
-              </span>
+              </Badge>
             )}
           </button>
         </div>

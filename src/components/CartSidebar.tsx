@@ -33,7 +33,7 @@ const CartSidebar = () => {
           <p>Keranjang masih kosong</p>
         </div>
       ) : (
-        <div className="flex-grow min-h-0 p-2 overflow-y-auto">
+        <div className="flex-grow min-h-0 overflow-y-auto">
           <div className="space-y-4 pr-1">
             {cartItems.map((item) => (
               <CartItemList key={item.foodId} item={item} />

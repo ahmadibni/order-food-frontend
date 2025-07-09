@@ -43,7 +43,7 @@ const CartItemList = ({ item }: { item: CartItem }) => {
         </h3>
       </div>
       <div className="col-start-2 row-start-2">
-        <p className="text-xs md:text-sm lg:text-base font-semibold text-red-500">
+        <p className="text-xs md:text-sm font-semibold text-red-500">
           Rp.{item.subtotal.toLocaleString()}
         </p>
       </div>
