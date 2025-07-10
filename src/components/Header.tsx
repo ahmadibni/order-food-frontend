@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { RiDrinksLine } from "react-icons/ri";
 import { TbShoppingBag } from "react-icons/tb";
-import { PiBowlFood, PiCoffee, PiMapPin } from "react-icons/pi";
+import { PiBowlFood, PiCoffee, PiMapPin, PiUser } from "react-icons/pi";
 import { FiMenu, FiSearch } from "react-icons/fi";
 
 import NavItem from "./NavItems";
@@ -19,6 +19,16 @@ import useCartStore from "@/store/useCartStore";
 import { MdShoppingCart } from "react-icons/md";
 import CartItemList from "./CartItemList";
 import { Badge } from "./ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { BiReceipt } from "react-icons/bi";
+import { Link } from "react-router";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -28,14 +38,14 @@ const Header = () => {
   const totalPrice = useCartStore((state) => state.totalPrice());
 
   const menuItems = [
-    { label: "Main Dishes", icon: PiBowlFood },
-    { label: "Coffee Based", icon: PiCoffee },
-    { label: "See Our Spot", icon: PiMapPin },
-    { label: "Beverages", icon: RiDrinksLine },
+    { label: "Main Dishes", icon: PiBowlFood, link: "/" },
+    { label: "Coffee Based", icon: PiCoffee, link: "/coffee-based" },
+    { label: "See Our Spot", icon: PiMapPin, link: "/see-our-spot" },
+    { label: "Beverages", icon: RiDrinksLine, link: "/beverages" },
   ];
 
   return (
-    <header className="bg-gray-100 py-3 px-4 sm:py-4 sm:px-6 rounded-full max-w-screen-xl mx-auto w-full">
+    <header className="bg-white py-3 px-4 sm:py-4 sm:px-6 rounded-full max-w-screen-xl mx-auto w-full">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-xl sm:text-2xl font-bold text-orange-500">
@@ -46,7 +56,7 @@ const Header = () => {
         <nav className="hidden md:block">
           <ul className="flex sm:space-x-2 lg:space-x-4 text-sm font-medium">
             {menuItems.map((item, i) => (
-              <NavItem key={i} icon={item.icon} label={item.label} />
+              <NavItem key={i} icon={item.icon} label={item.label} link={item.link}/>
             ))}
           </ul>
         </nav>
@@ -62,6 +72,27 @@ const Header = () => {
           >
             <FiMenu className="w-6 h-6 text-orange-500" />
           </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button>
+                <div className="hidden md:flex p-2 items-center space-x-2 bg-gray-100 hover:bg-gray-200 transition-colors duration-100 ease-in-out rounded-full cursor-pointer">
+                  <PiUser className="w-5 h-5 text-gray-600" />
+                </div>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48" align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/orders" className="flex flex-row">
+                  <BiReceipt />
+                  <span>My Orders</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <button
             onClick={() => setIsCartOpen((prev) => !prev)}
             className="relative flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 py-2 px-2 sm:px-5 cursor-pointer"
@@ -71,7 +102,10 @@ const Header = () => {
               Cart
             </span>
             {cartItems.length > 0 && (
-              <Badge variant="destructive" className="absolute -top-1.5 -right-1.5">
+              <Badge
+                variant="destructive"
+                className="absolute -top-1.5 -right-1.5"
+              >
                 {cartItems.length}
               </Badge>
             )}
@@ -147,7 +181,7 @@ const Header = () => {
           <DrawerDescription className="mt-6 px-4">
             <ul className="space-y-4 flex flex-col items-start">
               {menuItems.map((item, i) => (
-                <NavItem key={i} icon={item.icon} label={item.label} />
+                <NavItem key={i} icon={item.icon} label={item.label} link={item.link}/>
               ))}
             </ul>
           </DrawerDescription>

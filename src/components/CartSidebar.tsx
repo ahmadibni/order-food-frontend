@@ -17,12 +17,14 @@ const CartSidebar = () => {
   const totalPrice = useCartStore((state) => state.totalPrice());
 
   return (
-    <div className="hidden bg-gray-100 p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl md:flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
+    <div className="hidden bg-white p-4 mt-2 sm:mt-6 md:p-6 rounded-2xl md:rounded-3xl md:flex flex-col overflow-hidden max-h-[80vh] md:max-h-screen">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg md:text-xl font-semibold">My Order</h1>
-          <p className="text-sm text-gray-500">{cartItems.length} Orders</p>
+          <h1 className="text-lg md:text-xl font-semibold">My Meal List</h1>
+          <p className="text-sm text-gray-500">
+            {cartItems.length} {(cartItems.length === 1) || (cartItems.length === 0) ? "Order" : "Orders"}
+          </p>
         </div>
       </div>
 

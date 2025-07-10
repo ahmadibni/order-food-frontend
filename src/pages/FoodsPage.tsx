@@ -4,6 +4,7 @@ import useCartStore from "../store/useCartStore";
 import useFoodStore from "../store/useFoodStore";
 import { getFoods } from "@/services/foodService";
 import { useNavigate } from "react-router";
+import { categories } from "@/lib/constants";
 
 // Define interface for Food data
 
@@ -47,7 +48,22 @@ const FoodsPage = () => {
   }
 
   return (
-    <>
+    <div className="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl">
+      {/* Food Categories */}
+
+      <h1 className="text-lg md:text-xl font-semibold mb-4">Main Category</h1>
+
+      <div className="flex space-x-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+        {categories.map((category, index) => (
+          <button
+            key={index}
+            className="bg-gray-100 px-4 md:px-5 py-2 rounded-full hover:bg-gray-800 hover:text-white ease-in-out transition-colors whitespace-nowrap text-sm md:text-base"
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
       <h2 className="text-lg font-semibold mb-4">Popular Dishes</h2>
 
       {error && <div className="text-center py-8 text-red-500">{error}</div>}
@@ -101,7 +117,7 @@ const FoodsPage = () => {
         </div>
       )}
       {/* Food List */}
-    </>
+    </div>
   );
 };
 
