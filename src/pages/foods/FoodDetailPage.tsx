@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Food } from "../types/Food";
-import useCartStore from "../store/useCartStore";
+import type { Food } from "../../types/Food";
+import useCartStore from "../../store/useCartStore";
 import { Link, useParams } from "react-router";
 import { getFoodById } from "@/services/foodService";
 import { categories } from "@/lib/constants";

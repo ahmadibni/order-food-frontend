@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Food } from "../types/Food";
-import useCartStore from "../store/useCartStore";
-import useFoodStore from "../store/useFoodStore";
+import type { Food } from "../../types/Food";
+import useCartStore from "../../store/useCartStore";
+import useFoodStore from "../../store/useFoodStore";
 import { getFoods } from "@/services/foodService";
 import { useNavigate } from "react-router";
 import { categories } from "@/lib/constants";

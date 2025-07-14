@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import RootLayout from "./layouts/RootLayout";
-import FoodsPage from "./pages/FoodsPage";
+import FoodsPage from "./pages/foods/FoodsPage";
 import FoodLayout from "./layouts/FoodLayout";
-import FoodDetailPage from "./pages/FoodDetailPage";
+import FoodDetailPage from "./pages/foods/FoodDetailPage";
 
 function App() {
   return (
