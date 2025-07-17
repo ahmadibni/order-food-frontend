@@ -1,16 +1,7 @@
 import useCartStore from "../store/useCartStore";
 import CartItemList from "./CartItemList";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { MdShoppingCart } from "react-icons/md";
+import { Link } from "react-router";
 
 const CartSidebar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
@@ -23,7 +14,10 @@ const CartSidebar = () => {
         <div className="flex items-center justify-between">
           <h1 className="text-lg md:text-xl font-semibold">My Meal List</h1>
           <p className="text-sm text-gray-500">
-            {cartItems.length} {(cartItems.length === 1) || (cartItems.length === 0) ? "Order" : "Orders"}
+            {cartItems.length}{" "}
+            {cartItems.length === 1 || cartItems.length === 0
+              ? "Order"
+              : "Orders"}
           </p>
         </div>
       </div>
@@ -53,25 +47,12 @@ const CartSidebar = () => {
               Rp.{totalPrice.toLocaleString()}
             </span>
           </div>
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-xl transition-colors cursor-pointer">
-                Order Now !
-              </button>
-            </DialogTrigger>
-            <DialogContent className="rounded-2xl">
-              <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-                </DialogDescription>
-              </DialogHeader>
-              <DialogFooter>
-                <Button type="submit">Confirm</Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+          <Link
+            to="/orders/add"
+            className="block w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-xl transition-colors text-center"
+          >
+            Go to Order
+          </Link>
         </div>
       )}
     </div>

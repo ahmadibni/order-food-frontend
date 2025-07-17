@@ -3,6 +3,7 @@ import RootLayout from "./layouts/RootLayout";
 import FoodsPage from "./pages/foods/FoodsPage";
 import FoodLayout from "./layouts/FoodLayout";
 import FoodDetailPage from "./pages/foods/FoodDetailPage";
+import CreateOrderPage from "./pages/orders/CreateOrderPage";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
             <Route index element={<FoodsPage />} />
             <Route path="/foods/:foodId" element={<FoodDetailPage />} />
           </Route>
-          <Route path="orders" element={<div>Orders Page</div>} />
+          <Route path="orders">
+            <Route path="add" element={<CreateOrderPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
