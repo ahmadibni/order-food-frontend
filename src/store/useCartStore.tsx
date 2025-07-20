@@ -7,6 +7,7 @@ interface CartState {
   addToCart: (food: Food, quantity: number | undefined) => void;
   updateCartItem: (foodId: string, quantity: number) => void;
   removeFromCart: (foodId: string) => void;
+  tax: number;
   totalPrice: () => number;
 }
 
@@ -64,6 +65,7 @@ const useCartStore = create<CartState>((set, get) => ({
       ),
     }));
   },
+  tax: 0.1, // Example tax rate
   removeFromCart: (foodId) => {
     set((state) => ({
       cartItems: state.cartItems.filter((item) => item.foodId !== foodId),

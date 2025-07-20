@@ -56,7 +56,12 @@ const Header = () => {
         <nav className="hidden md:block">
           <ul className="flex sm:space-x-2 lg:space-x-4 text-sm font-medium">
             {menuItems.map((item, i) => (
-              <NavItem key={i} icon={item.icon} label={item.label} link={item.link}/>
+              <NavItem
+                key={i}
+                icon={item.icon}
+                label={item.label}
+                link={item.link}
+              />
             ))}
           </ul>
         </nav>
@@ -81,7 +86,7 @@ const Header = () => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48" align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Hello, Ibni</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem asChild>
@@ -156,9 +161,12 @@ const Header = () => {
                   </span>
                 </div>
 
-                <button className="w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-xl transition-colors cursor-pointer">
+                <Link
+                  to="/orders/add"
+                  className="block w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-xl transition-colors text-center"
+                >
                   Order Now !
-                </button>
+                </Link>
               </div>
             )}
           </DrawerFooter>
@@ -181,7 +189,12 @@ const Header = () => {
           <DrawerDescription className="mt-6 px-4">
             <ul className="space-y-4 flex flex-col items-start">
               {menuItems.map((item, i) => (
-                <NavItem key={i} icon={item.icon} label={item.label} link={item.link}/>
+                <NavItem
+                  key={i}
+                  icon={item.icon}
+                  label={item.label}
+                  link={item.link}
+                />
               ))}
             </ul>
           </DrawerDescription>

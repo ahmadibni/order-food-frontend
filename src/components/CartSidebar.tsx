@@ -51,7 +51,7 @@ const CartSidebar = () => {
             to="/orders/add"
             className="block w-full bg-orange-500 hover:bg-orange-400 text-white font-semibold py-2 rounded-xl transition-colors text-center"
           >
-            Go to Order
+            Order Now
           </Link>
         </div>
       )}
