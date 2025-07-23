@@ -22,7 +22,7 @@ const formSchema = z.object({
   address: z.string("Please fill in your address"),
 });
 
-const CreateOrderPage = () => {
+const CreateOrdeIDRage = () => {
   const cartItems = useCartStore((state) => state.cartItems);
   const totalPrice = useCartStore((state) => state.totalPrice());
   const tax = useCartStore((state) => state.tax);
@@ -71,7 +71,7 @@ const CreateOrderPage = () => {
                         {item.name}
                       </p>
                       <p className="text-xs md:text-sm text-gray-500">
-                        Rp. {item.price.toLocaleString()}
+                        IDR. {item.price.toLocaleString()}
                       </p>
                     </div>
                     <div className="flex justify-between">
@@ -79,7 +79,7 @@ const CreateOrderPage = () => {
                         Qty: {item.quantity}
                       </p>
                       <h3 className="text-xs md:text-base font-semibold text-red-500">
-                        Rp. {item.subtotal.toLocaleString()}
+                        IDR. {item.subtotal.toLocaleString()}
                       </h3>
                     </div>
                   </div>
@@ -101,7 +101,7 @@ const CreateOrderPage = () => {
                     Subtotal
                   </p>
                   <span className="text-base font-normal text-red-500">
-                    Rp.{totalPrice.toLocaleString()}
+                    IDR. {totalPrice.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -117,14 +117,14 @@ const CreateOrderPage = () => {
                     Tax <span>({(tax * 100).toFixed(0)}%)</span>
                   </p>
                   <span className="text-base font-normal text-red-500">
-                    Rp. {taxAmount.toLocaleString()}
+                    IDR. {taxAmount.toLocaleString()}
                   </span>
                 </div>
               </div>
               <div className="flex items-center justify-between py-4">
                 <p className="text-lg font-semibold text-gray-700">Total</p>
                 <span className="text-lg font-semibold text-red-500">
-                  Rp. {grandTotal.toLocaleString()}
+                  IDR. {grandTotal.toLocaleString()}
                 </span>
               </div>
             </div>
@@ -196,4 +196,4 @@ const CreateOrderPage = () => {
   );
 };
 
-export default CreateOrderPage;
+export default CreateOrdeIDRage;

@@ -123,7 +123,7 @@ const FoodDetailPage = () => {
             </div>
             <div className="flex justify-between items-center gap-2">
               <span className="text-xl font-bold text-gray-800 ml-0 md:ml-4">
-                Rp{(price * quantity).toLocaleString("id-ID")}
+                IDR. {(price * quantity).toLocaleString("id-ID")}
               </span>
               <button
                 onClick={() => {

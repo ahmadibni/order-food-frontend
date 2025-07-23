@@ -44,7 +44,7 @@ const CartSidebar = () => {
           <div className="flex items-center justify-between mb-4">
             <span className="text-sm font-medium text-gray-700">Total</span>
             <span className="text-lg font-semibold text-red-500">
-              Rp.{totalPrice.toLocaleString()}
+              IDR. {totalPrice.toLocaleString()}
             </span>
           </div>
           <Link
