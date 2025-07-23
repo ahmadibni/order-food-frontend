@@ -78,7 +78,7 @@ const FoodDetailPage = () => {
         </Link>
         <h1 className="text-lg md:text-xl font-semibold">Main Category</h1>
       </div>
-      <div className="flex space-x-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+      <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
         {categories.map((category, index) => (
           <button
             key={index}
