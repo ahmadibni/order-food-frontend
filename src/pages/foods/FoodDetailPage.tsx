@@ -3,7 +3,7 @@ import type { Food } from "../../types/Food";
 import useCartStore from "../../store/useCartStore";
 import { Link, useParams } from "react-router";
 import { getFoodById } from "@/services/foodService";
-import { categories } from "@/lib/constants";
+import { categories } from "@/utils/constants";
 import { FaArrowLeft } from "react-icons/fa";
 
 const FoodDetailPage = () => {

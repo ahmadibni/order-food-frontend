@@ -4,7 +4,7 @@ import useCartStore from "../../store/useCartStore";
 import useFoodStore from "../../store/useFoodStore";
 import { getFoods } from "@/services/foodService";
 import { useNavigate } from "react-router";
-import { categories } from "@/lib/constants";
+import { categories } from "@/utils/constants";
 
 // Define interface for Food data
 

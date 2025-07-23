@@ -1,4 +1,4 @@
-import api from "@/lib/axios";
+import api from "@/utils/axios";
 import type { Order } from "@/types/Order";
 
 const getOrders = async (): Promise<Order[]> => {

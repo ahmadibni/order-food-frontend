@@ -1,3 +1,4 @@
+import type { OrderStatus } from "@/utils/constants";
 import type { CartItem } from "./Cart";
 
 export type OrderItem = Omit<CartItem, "subtotal" | "image">;
@@ -7,6 +8,7 @@ export interface Order {
   phone: string;
   address: string;
   totalPrice: number;
+  createdAt: string;
   items: OrderItem[];
-  status: "pending" | "preparing" | "delivered" | "cancelled";
+  status: OrderStatus;
 }
