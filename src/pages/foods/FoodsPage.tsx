@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
 import type { Food } from "../../types/Food";
 import useCartStore from "../../store/useCartStore";
 import useFoodStore from "../../store/useFoodStore";
-import { getFoods } from "@/services/foodService";
-import { useNavigate } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { categories } from "@/utils/constants";
+import { useEffect } from "react";
 
 // Define interface for Food data
 
@@ -13,27 +12,13 @@ const FoodsPage = () => {
   const foods = useFoodStore((state) => state.foods);
   const setFoods = useFoodStore((state) => state.setFoods);
 
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const navigate = useNavigate();
+  const data = useLoaderData();
 
   useEffect(() => {
-    const fetchFoods = async () => {
-      try {
-        setLoading(true);
-        const data = await getFoods();
-        setFoods(data);
-      } catch (err) {
-        setError("Failed to fetch foods. Please try again later.");
-        console.error("Error fetching foods:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+    setFoods(data);
+  }, [data, setFoods]);
 
-    fetchFoods();
-  }, []);
+  const navigate = useNavigate();
 
   const handleNavigateToDetail = (foodId: string) => {
     navigate(`/foods/${foodId}`);
@@ -42,10 +27,6 @@ const FoodsPage = () => {
   const handleAddToCartClick = (food: Food, quantity?: number) => {
     addToCart(food, quantity);
   };
-
-  if (loading) {
-    return <div className="text-center py-8">Loading foods...</div>;
-  }
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-2xl md:rounded-3xl">
@@ -66,9 +47,7 @@ const FoodsPage = () => {
 
       <h2 className="text-lg font-semibold mb-4">Popular Dishes</h2>
 
-      {error && <div className="text-center py-8 text-red-500">{error}</div>}
-
-      {foods.length === 0 && !error ? (
+      {foods.length === 0 ? (
         <p className="text-center py-8">No foods available</p>
       ) : (
         // Food List
