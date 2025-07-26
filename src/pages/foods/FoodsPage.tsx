@@ -2,8 +2,9 @@ import type { Food } from "../../types/Food";
 import useCartStore from "../../store/useCartStore";
 import useFoodStore from "../../store/useFoodStore";
 import { useLoaderData, useNavigate } from "react-router";
-import { categories } from "@/utils/constants";
+import { categories } from "@/lib/constants";
 import { useEffect } from "react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 // Define interface for Food data
 
@@ -34,16 +35,19 @@ const FoodsPage = () => {
 
       <h1 className="text-lg md:text-xl font-semibold mb-4">Main Category</h1>
 
-      <div className="flex space-x-2 mb-6 overflow-x-auto pb-2">
-        {categories.map((category, index) => (
-          <button
-            key={index}
-            className="bg-gray-100 px-4 md:px-5 py-2 rounded-full hover:bg-gray-800 hover:text-white ease-in-out transition-colors whitespace-nowrap text-sm md:text-base"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      <ScrollArea>
+        <div className="flex space-x-2 mb-6 overflow-x-auto">
+          {categories.map((category, index) => (
+            <button
+              key={index}
+              className="bg-gray-100 px-4 md:px-5 py-2 rounded-full hover:bg-gray-800 hover:text-white ease-in-out transition-colors whitespace-nowrap text-sm md:text-base"
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
 
       <h2 className="text-lg font-semibold mb-4">Popular Dishes</h2>
 

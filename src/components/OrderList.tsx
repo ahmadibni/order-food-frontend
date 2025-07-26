@@ -1,5 +1,5 @@
 import type { Order } from "@/types/Order";
-import { ORDER_STATUS } from "@/utils/constants";
+import { ORDER_STATUS } from "@/lib/constants";
 import clsx from "clsx";
 
 const OrderList = ({ order }: { order: Order }) => {

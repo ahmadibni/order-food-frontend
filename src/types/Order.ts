@@ -1,4 +1,4 @@
-import type { OrderStatus } from "@/utils/constants";
+import type { OrderStatus } from "@/lib/constants";
 import type { CartItem } from "./Cart";
 
 export type OrderItem = Omit<CartItem, "subtotal" | "image">;

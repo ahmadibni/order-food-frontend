@@ -2,6 +2,7 @@ import useCartStore from "../store/useCartStore";
 import CartItemList from "./CartItemList";
 import { MdShoppingCart } from "react-icons/md";
 import { Link } from "react-router";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const CartSidebar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
@@ -29,13 +30,14 @@ const CartSidebar = () => {
           <p>Keranjang masih kosong</p>
         </div>
       ) : (
-        <div className="flex-grow min-h-0 overflow-y-auto">
-          <div className="space-y-4 pr-1">
+        <ScrollArea className="flex-grow min-h-0 overflow-y-auto">
+          <div className="pr-1 space-y-4">
             {cartItems.map((item) => (
               <CartItemList key={item.foodId} item={item} />
             ))}
           </div>
-        </div>
+          <ScrollBar orientation="vertical" />
+        </ScrollArea>
       )}
 
       {/* Footer */}
