@@ -6,6 +6,7 @@ import FoodDetailPage from "./pages/foods/FoodDetailPage";
 import CreateOrderPage from "./pages/orders/CreateOrderPage";
 import MyOrderPage from "./pages/orders/MyOrderPage";
 import { getFoodById, getFoods } from "./services/foodService";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: <DashboardLayout />,
   },
 ]);
 

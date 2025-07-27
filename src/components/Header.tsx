@@ -40,8 +40,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link to="/">
-          <h1 className="text-xl sm:text-2xl font-bold text-orange-500">
-            Makan<span className="text-red-500">Ki'</span>
+          <h1 className="text-2xl font-bold text-orange-500">
+            Makan<span className="font-extrabold text-red-500">Ki'</span>
           </h1>
         </Link>
 
@@ -66,7 +66,7 @@ const Header = () => {
           </button>
           <Link
             to="/orders"
-            className="relative flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 py-2 px-2 sm:px-5 cursor-pointer"
+            className="relative flex py-2 px-2 bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 cursor-pointer"
           >
             <TbReceipt className="h-5 w-5 text-white" />
           </Link>

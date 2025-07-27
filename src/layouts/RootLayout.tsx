@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 
 const RootLayout = () => {
   return (
-    <main className="bg-gray-100 min-h-screen p-4 sm:p-6 flex flex-col">
+    <main className="font-[manrope] bg-gray-100 min-h-screen p-4 sm:p-6 flex flex-col">
       <Header />
       <Outlet />
       <Toaster richColors position="top-center" />
