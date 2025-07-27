@@ -13,21 +13,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useCartStore from "@/store/useCartStore";
 import { MdShoppingCart } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { createOrder } from "@/services/orderService";
+import { toast } from "sonner";
+import axios from "axios";
 
 const formSchema = z.object({
   name: z.string("Please fill in your name"),
   phone: z
     .string("Please fill in your phone number")
-    .min(10, "Phone number must be at least 10 characters"),
+    .min(10, "Phone number must be at least 10 characters")
+    .regex(/^[0-9]+$/, "Phone must contain only numbers"),
   address: z.string("Please fill in your address"),
 });
 
-const CreateOrdeIDRage = () => {
+const CreateOrderPage = () => {
   const cartItems = useCartStore((state) => state.cartItems);
   const totalPrice = useCartStore((state) => state.totalPrice());
+  const clearCart = useCartStore((state) => state.clearCart);
+
   const tax = useCartStore((state) => state.tax);
+
+  const navigate = useNavigate();
 
   const taxAmount = totalPrice * tax;
   const grandTotal = totalPrice + taxAmount;
@@ -36,7 +43,7 @@ const CreateOrdeIDRage = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const orderData = {
       ...values,
       items: cartItems.map((item) => ({
@@ -44,8 +51,22 @@ const CreateOrdeIDRage = () => {
         quantity: item.quantity,
       })),
     };
-    
-    createOrder(orderData);
+    try {
+      await createOrder(orderData);
+      navigate("/orders");
+
+      toast.success("Order created successfully!");
+    } catch (error: unknown) {
+      console.error(error);
+
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(error.response.data?.message || "An error occurred");
+      } else {
+        toast.error("Something went wrong.");
+      }
+    } finally {
+      clearCart();
+    }
   };
 
   return (
@@ -199,4 +220,4 @@ const CreateOrdeIDRage = () => {
   );
 };
 
-export default CreateOrdeIDRage;
+export default CreateOrderPage;

@@ -9,6 +9,7 @@ interface CartState {
   removeFromCart: (foodId: string) => void;
   tax: number;
   totalPrice: () => number;
+  clearCart: () => void;
 }
 
 const useCartStore = create<CartState>((set, get) => ({
@@ -73,6 +74,7 @@ const useCartStore = create<CartState>((set, get) => ({
   },
   totalPrice: () =>
     get().cartItems.reduce((total, item) => total + item.subtotal, 0),
+  clearCart: () => set({ cartItems: [] }),
 }));
 
 export default useCartStore;

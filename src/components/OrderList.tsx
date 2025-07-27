@@ -6,10 +6,10 @@ const OrderList = ({ order }: { order: Order }) => {
   const date = new Date(order.createdAt);
 
   return (
-    <div className="p-4 border-[1px] rounded-lg mb-4">
+    <div className="p-4 border-[1px] rounded-2xl mb-4">
       <p
         className={clsx(
-          "px-4 py-1 mb-2 text-base rounded-full w-fit font-base",
+          "px-4 py-1 mb-2 text-base rounded-lg w-fit font-base",
           ORDER_STATUS[order.status].color
         )}
       >
@@ -20,11 +20,12 @@ const OrderList = ({ order }: { order: Order }) => {
         <p className="text-xs text-gray-500">{date.toLocaleString()}</p>
       </div>
 
-      <div className="mt-2 border-b-[1px] border-gray-w00 pb-4">
+      <div className="mt-2 border-b border-gray-200 pb-4 text-xs text-gray-700">
         {order.items.map((item, index) => (
-          <p key={index} className="text-xs text-gray-700">
+          <span key={index}>
             {item.quantity}x {item.name}
-          </p>
+            {index < order.items.length - 1 && ", "}
+          </span>
         ))}
       </div>
 
