@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useCartStore from "@/store/useCartStore";
 import { MdShoppingCart } from "react-icons/md";
+import { Link } from "react-router";
 
 const formSchema = z.object({
   name: z.string("Please fill in your name"),
@@ -76,7 +77,7 @@ const CreateOrdeIDRage = () => {
                     </div>
                     <div className="flex justify-between">
                       <p className="text-center md:text-sm lg:text-base font-medium">
-                        Qty: {item.quantity}
+                        Qty: {item.quantity}x
                       </p>
                       <h3 className="text-xs md:text-base font-semibold text-red-500">
                         IDR. {item.subtotal.toLocaleString()}
@@ -102,14 +103,6 @@ const CreateOrdeIDRage = () => {
                   </p>
                   <span className="text-base font-normal text-red-500">
                     IDR. {totalPrice.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <p className="text-base font-normal text-gray-700">
-                    Delivery fee
-                  </p>
-                  <span className="text-base font-normal text-red-500">
-                    Free
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -174,21 +167,29 @@ const CreateOrdeIDRage = () => {
               name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>Table Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="Pettarani St." {...field} />
+                    <Input placeholder="2" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            <Button
-              type="submit"
-              className="bg-orange-500 hover:bg-orange-400 text-white font-semibold mt-2 py-2 rounded-xl transition-colors text-center"
-            >
-              Submit Order
-            </Button>
+            <div className="flex justify-center space-x-4 items-center mt-4">
+              <Button
+                asChild
+                className="text-lg flex-1 bg-white hover:bg-gray-100 border-[1px] border-orange-500 text-orange-500 py-6 rounded-xl transition-colors text-center"
+              >
+                <Link to="/">Cancel</Link>
+              </Button>
+              <Button
+                type="submit"
+                className="text-lg flex-1 bg-orange-500 hover:bg-orange-400 text-white py-6 rounded-xl transition-colors text-center"
+              >
+                Order Now !
+              </Button>
+            </div>
           </form>
         </Form>
       </div>

@@ -5,6 +5,7 @@ import { Link, useLoaderData } from "react-router";
 import { categories } from "@/lib/constants";
 import { FaArrowLeft } from "react-icons/fa";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { TiPlus } from "react-icons/ti";
 
 const FoodDetailPage = () => {
   const data = useLoaderData();
@@ -60,10 +61,10 @@ const FoodDetailPage = () => {
       </ScrollArea>
 
       {food ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           <img
             src={food.image}
-            className="w-full h-64 md:h-96 object-cover rounded-2xl mb-6 md:mb-0"
+            className="w-full h-64 md:h-96 object-cover rounded-2xl"
             alt={food.name}
           />
 
@@ -97,12 +98,16 @@ const FoodDetailPage = () => {
                   IDR. {(food.price * quantity).toLocaleString("id-ID")}
                 </span>
                 <button
-                  onClick={() => {
-                    handleAddToCartClick(food, quantity);
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddToCartClick(food);
                   }}
-                  className="bg-gray-800 hover:bg-gray-700 transition-colors py-2 px-5 rounded-full text-white cursor-pointer"
+                  className="relative flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-xl justify-center space-x-2 py-2 px-5 cursor-pointer"
                 >
-                  Add to Order
+                  <TiPlus className="h-3 w-3 text-white" />
+                  <span className="text-md text-white font-medium">
+                    Add Item
+                  </span>
                 </button>
               </div>
             </div>

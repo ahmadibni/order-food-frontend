@@ -5,6 +5,7 @@ import { useLoaderData, useNavigate } from "react-router";
 import { categories } from "@/lib/constants";
 import { useEffect } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { TiPlus } from "react-icons/ti";
 
 // Define interface for Food data
 
@@ -89,9 +90,12 @@ const FoodsPage = () => {
                       e.stopPropagation();
                       handleAddToCartClick(food);
                     }}
-                    className="bg-gray-800 text-white px-3 py-2 rounded-xl text-xs sm:text-sm hover:bg-gray-700 transition-colors cursor-pointer"
+                    className="relative w-full flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-xl justify-center space-x-2 py-2 px-2 sm:px-5 cursor-pointer"
                   >
-                    Add to Cart
+                    <TiPlus className="h-3 w-3 text-white" />
+                    <span className="text-sm text-white font-medium">
+                      Add Item
+                    </span>
                   </button>
                 </div>
               </div>
