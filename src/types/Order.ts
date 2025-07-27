@@ -12,3 +12,15 @@ export interface Order {
   items: OrderItem[];
   status: OrderStatus;
 }
+
+export interface OrderItemRequest {
+  foodId: string;
+  quantity: number;
+}
+
+export interface OrderRequest {
+  name: string;
+  phone: string;
+  address: string;
+  items: OrderItemRequest[];
+}

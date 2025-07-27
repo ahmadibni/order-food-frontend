@@ -23,6 +23,7 @@ import {
 } from "./ui/dropdown-menu";
 import { BiReceipt } from "react-icons/bi";
 import { Link } from "react-router";
+import { TbReceipt } from "react-icons/tb";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -38,9 +39,11 @@ const Header = () => {
     <header className="bg-white mx-auto w-full py-3 px-4 sm:py-4 sm:px-6 rounded-3xl max-w-screen-xl">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-xl sm:text-2xl font-bold text-orange-500">
-          Makan<span className="text-red-500">Ki'</span>
-        </h1>
+        <Link to="/">
+          <h1 className="text-xl sm:text-2xl font-bold text-orange-500">
+            Makan<span className="text-red-500">Ki'</span>
+          </h1>
+        </Link>
 
         {/* Navigation Menu */}
         <nav className="hidden md:block">
@@ -57,10 +60,16 @@ const Header = () => {
         </nav>
 
         {/* Search & Cart */}
-        <div className="flex items-center space-x-2 sm:space-x-4">
+        <div className="flex items-center space-x-2">
           <button className="text-xs sm:text-sm text-gray-600 hover:bg-gray-200 p-2 cursor-pointer rounded-full transition-colors duration-100 ease-in-out flex items-center space-x-1">
             <FiSearch className="w-5 h-5 text-gray-600" />
           </button>
+          <Link
+            to="/orders"
+            className="relative flex bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 py-2 px-2 sm:px-5 cursor-pointer"
+          >
+            <TbReceipt className="h-5 w-5 text-white" />
+          </Link>
           <button
             className="md:hidden p-2 rounded-full hover:bg-orange-100"
             onClick={() => setOpen(true)}

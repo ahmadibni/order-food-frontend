@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import useCartStore from "@/store/useCartStore";
 import { MdShoppingCart } from "react-icons/md";
 import { Link } from "react-router";
+import { createOrder } from "@/services/orderService";
 
 const formSchema = z.object({
   name: z.string("Please fill in your name"),
@@ -43,7 +44,8 @@ const CreateOrdeIDRage = () => {
         quantity: item.quantity,
       })),
     };
-    console.log(orderData);
+    
+    createOrder(orderData);
   };
 
   return (
@@ -167,9 +169,9 @@ const CreateOrdeIDRage = () => {
               name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Table Number</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input placeholder="2" {...field} />
+                    <Input placeholder="Pettarani St." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

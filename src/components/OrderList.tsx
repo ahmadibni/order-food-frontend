@@ -6,46 +6,32 @@ const OrderList = ({ order }: { order: Order }) => {
   const date = new Date(order.createdAt);
 
   return (
-    <div className="flex justify-between p-4 border-[1px] rounded-lg text-center">
+    <div className="p-4 border-[1px] rounded-lg mb-4">
+      <p
+        className={clsx(
+          "px-4 py-1 mb-2 text-base rounded-full w-fit font-base",
+          ORDER_STATUS[order.status].color
+        )}
+      >
+        {ORDER_STATUS[order.status].label}
+      </p>
       <div>
-        <h2 className="text-xs text-gray-500 mb-3 underline underline-offset-4">
-          Created at
-        </h2>
-        <p className="text-base text-gray-600">{date.toLocaleDateString()}</p>
-        <p className="text-base text-gray-600">{date.toLocaleTimeString()}</p>
+        <p className="text-xl font-semibold">{order.name}</p>
+        <p className="text-xs text-gray-500">{date.toLocaleString()}</p>
       </div>
-      <div>
-        <h2 className="text-xs text-gray-500 mb-3 underline underline-offset-4">
-          Name
-        </h2>
-        <p className="text-base font-semibold">{order.name}</p>
-        <p className="text-base text-gray-500">{order.phone}</p>
+
+      <div className="mt-2 border-b-[1px] border-gray-w00 pb-4">
+        {order.items.map((item, index) => (
+          <p key={index} className="text-xs text-gray-700">
+            {item.quantity}x {item.name}
+          </p>
+        ))}
       </div>
-      <div>
-        <h2 className="text-xs text-gray-500 mb-3 underline underline-offset-4">
-          Destination
-        </h2>
-        <p className="text-base font-semibold">{order.address}</p>
-      </div>
-      <div>
-        <h2 className="text-xs text-gray-500 mb-3 underline underline-offset-4">
-          Cost
-        </h2>
-        <p className="text-lg font-semibold text-lime-600">
-          IDR. {order.totalPrice.toLocaleString()}
-        </p>
-      </div>
-      <div>
-        <h2 className="text-xs text-gray-500 mb-3 underline underline-offset-4">
-          Status
-        </h2>
-        <p
-          className={clsx(
-            "text-sm rounded-full font-semibold px-4 py-1",
-            ORDER_STATUS[order.status].color
-          )}
-        >
-          {ORDER_STATUS[order.status].label}
+
+      <div className="mt-4 flex items-center justify-start gap-x-2">
+        <h2 className="text-xs text-gray-500">Cost :</h2>
+        <p className="text-lg font-semibold">
+          IDR. {order.totalPrice.toLocaleString("id-ID")}
         </p>
       </div>
     </div>

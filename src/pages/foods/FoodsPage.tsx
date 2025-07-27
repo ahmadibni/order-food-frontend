@@ -78,7 +78,7 @@ const FoodsPage = () => {
                     {food.name}
                   </h3>
                   <p className="font-medium text-orange-600 text-sm md:text-base">
-                    IDR. {food.price.toLocaleString()}
+                    IDR {food.price.toLocaleString("id-ID")}
                   </p>
                 </div>
                 <p className="text-gray-600 text-xs sm:text-sm mb-3 line-clamp-2">
