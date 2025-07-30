@@ -1,22 +1,34 @@
 import { useEffect, useState } from "react";
 import type { Food } from "../../types/Food";
 import useCartStore from "../../store/useCartStore";
-import { Link, useLoaderData } from "react-router";
+import { Link, useParams } from "react-router";
 import { categories } from "@/lib/constants";
 import { FaArrowLeft } from "react-icons/fa";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { TiPlus } from "react-icons/ti";
+import { useQuery } from "@tanstack/react-query";
+import { getFoodById } from "@/services/foodService";
 
 const FoodDetailPage = () => {
-  const data = useLoaderData();
+  const { foodId } = useParams();
 
   const addToCart = useCartStore((state) => state.addToCart);
 
   const [food, setFood] = useState<Food | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
+  const { data } = useQuery({
+    queryKey: ["foods", foodId],
+    queryFn: () => {
+      if (!foodId) throw new Error("foodId is required");
+      return getFoodById(foodId);
+    },
+  });
+
   useEffect(() => {
-    setFood(data);
+    if (data) {
+      setFood(data);
+    }
   }, [data, setFood]);
 
   const handleIncrement = () => {

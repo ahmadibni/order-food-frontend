@@ -1,11 +1,13 @@
 import type { Food } from "../../types/Food";
 import useCartStore from "../../store/useCartStore";
 import useFoodStore from "../../store/useFoodStore";
-import { useLoaderData, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { categories } from "@/lib/constants";
 import { useEffect } from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { TiPlus } from "react-icons/ti";
+import { useQuery } from "@tanstack/react-query";
+import { getFoods } from "@/services/foodService";
 
 // Define interface for Food data
 
@@ -14,10 +16,15 @@ const FoodsPage = () => {
   const foods = useFoodStore((state) => state.foods);
   const setFoods = useFoodStore((state) => state.setFoods);
 
-  const data = useLoaderData();
+  const { data } = useQuery({
+    queryKey: ["foods"],
+    queryFn: getFoods,
+  });
 
   useEffect(() => {
-    setFoods(data);
+    if (data) {
+      setFoods(data);
+    }
   }, [data, setFoods]);
 
   const navigate = useNavigate();
