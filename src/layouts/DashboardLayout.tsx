@@ -1,14 +1,21 @@
 import DashboardSidebar from "@/components/DashboardSidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import { Outlet } from "react-router";
 
 const DashboardLayout = () => {
   return (
-    <SidebarProvider>
+    <SidebarProvider className="bg-gray-100">
       <DashboardSidebar />
-      <main className="w-full bg-gray-100 p-4">
-        <SidebarTrigger className="hover:bg-gray-200" />
-        <h1>Halo Admin</h1>
-      </main>
+      <SidebarInset>
+        <main className="w-full p-2.5">
+          <SidebarTrigger className="hover:bg-gray-200" />
+          <Outlet />
+        </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 };

@@ -31,7 +31,6 @@ const CreateOrderPage = () => {
   const cartItems = useCartStore((state) => state.cartItems);
   const totalPrice = useCartStore((state) => state.totalPrice());
   const clearCart = useCartStore((state) => state.clearCart);
-
   const tax = useCartStore((state) => state.tax);
 
   const navigate = useNavigate();
@@ -199,16 +198,16 @@ const CreateOrderPage = () => {
               )}
             />
 
-            <div className="flex justify-center space-x-4 items-center mt-4">
+            <div className="flex justify-center space-x-4 items-center sm:justify-end mt-4">
               <Button
                 asChild
-                className="text-lg flex-1 bg-white hover:bg-gray-100 border-[1px] border-orange-500 text-orange-500 py-6 rounded-xl transition-colors text-center"
+                className="text-lg flex-1 sm:grow-0 bg-white hover:bg-gray-100 border-[1px] border-orange-500 text-orange-500 py-6 rounded-xl transition-colors text-center"
               >
                 <Link to="/">Cancel</Link>
               </Button>
               <Button
                 type="submit"
-                className="text-lg flex-1 bg-orange-500 hover:bg-orange-400 text-white py-6 rounded-xl transition-colors text-center"
+                className="text-lg flex-1 sm:grow-0 bg-orange-500 hover:bg-orange-400 text-white py-6 rounded-xl transition-colors text-center"
               >
                 Order Now !
               </Button>

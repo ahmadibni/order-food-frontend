@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   Sidebar,
   SidebarContent,
@@ -8,30 +9,59 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "./ui/sidebar";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  Gift,
+  IdCardLanyard,
+  Percent,
+  ReceiptText,
+  Settings,
+  Users,
+  Utensils,
+} from "lucide-react";
+import { useLocation } from "react-router";
 
 const DashboardSidebar = () => {
-  const items = [
+  const { open } = useSidebar();
+  const location = useLocation();
+
+  const group1 = [
     {
-      title: "Home",
-      url: "#",
-      icon: Home,
+      title: "Products",
+      url: "/admin/products",
+      icon: Utensils,
     },
     {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
+      title: "Orders",
+      url: "/admin/orders",
+      icon: ReceiptText,
     },
     {
-      title: "Calendar",
+      title: "Customers",
       url: "#",
-      icon: Calendar,
+      icon: Users,
+    },
+  ];
+
+  const group2 = [
+    {
+      title: "Promotions",
+      url: "#",
+      icon: Gift,
     },
     {
-      title: "Search",
+      title: "Tax",
       url: "#",
-      icon: Search,
+      icon: Percent,
+    },
+  ];
+
+  const group3 = [
+    {
+      title: "Staff Management",
+      url: "#",
+      icon: IdCardLanyard,
     },
     {
       title: "Settings",
@@ -39,21 +69,78 @@ const DashboardSidebar = () => {
       icon: Settings,
     },
   ];
+
   return (
-    <Sidebar className="p-2">
+    <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader className="bg-white">
-        <h1 className="text-2xl font-bold text-orange-500">
+        <h1
+          className={clsx(
+            "text-2xl font-bold text-orange-500",
+            !open && "hidden"
+          )}
+        >
           Makan<span className="font-extrabold text-red-500">Ki'</span>
+        </h1>
+        <h1
+          className={clsx(
+            "text-2xl font-bold text-orange-500 text-center",
+            open ? "hidden" : "visible"
+          )}
+        >
+          M
         </h1>
       </SidebarHeader>
       <SidebarContent className="bg-white">
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Sales & Orders</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {group1.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname === `${item.url}`}
+                  >
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Marketing & Finance</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {group2.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname === `${item.url}`}
+                  >
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>Team & Settings</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {group3.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={location.pathname === `${item.url}`}
+                  >
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>

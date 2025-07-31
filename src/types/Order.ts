@@ -4,6 +4,7 @@ import type { CartItem } from "./Cart";
 export type OrderItem = Omit<CartItem, "subtotal" | "image">;
 
 export interface Order {
+  _id: string;
   name: string;
   phone: string;
   address: string;

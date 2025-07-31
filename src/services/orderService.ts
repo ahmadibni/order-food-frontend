@@ -11,6 +11,16 @@ const getOrders = async (): Promise<Order[]> => {
   }
 };
 
+const getOrderById = async (id: string): Promise<Order> => {
+  try {
+    const response = await api.get(`/orders/${id}`);
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching foods:", error);
+    throw error;
+  }
+};
+
 const createOrder = async (order: OrderRequest): Promise<Order> => {
   try {
     const response = await api.post("/orders", order);
@@ -21,4 +31,4 @@ const createOrder = async (order: OrderRequest): Promise<Order> => {
   }
 };
 
-export { getOrders, createOrder };
+export { getOrders, getOrderById, createOrder };

@@ -66,7 +66,7 @@ const Header = () => {
           </button>
           <Link
             to="/orders"
-            className="relative flex py-2 px-2 bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 cursor-pointer"
+            className="sm:hidden relative flex py-2 px-2 bg-orange-500 transition-colors duration-100 ease-in-out hover:bg-orange-400 items-center rounded-3xl justify-center md:space-x-2 cursor-pointer"
           >
             <TbReceipt className="h-5 w-5 text-white" />
           </Link>

@@ -11,12 +11,12 @@ export const categories = [
 
 export const ORDER_STATUS = {
   pending: {
-    label: "Order Received",
-    color: "bg-yellow-100 text-yellow-800",
+    label: "New Order",
+    color: "bg-blue-100 text-blue-800",
   },
   preparing: {
-    label: "Being Prepared",
-    color: "bg-blue-100 text-blue-800",
+    label: "Preparing",
+    color: "bg-yellow-100 text-yellow-800",
   },
   delivered: {
     label: "Delivered",

@@ -7,6 +7,10 @@ import CreateOrderPage from "./pages/orders/CreateOrderPage";
 import MyOrderPage from "./pages/orders/MyOrderPage";
 import DashboardLayout from "./layouts/DashboardLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AdminProductsPage from "./pages/admin/products/AdminProductPage";
+import AdminOrdersPage from "./pages/admin/orders/AdminOrdersPage";
+import AdminOrderDetailPage from "./pages/admin/orders/AdminOrderDetailPage";
+import AdminProductEditPage from "./pages/admin/products/AdminProductEditPage";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +43,18 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <DashboardLayout />,
+    children: [
+      // Product
+      { path: "/admin/products", element: <AdminProductsPage /> },
+      {
+        path: "/admin/products/:productId/edit",
+        element: <AdminProductEditPage />,
+      },
+
+      //Order
+      { path: "orders", element: <AdminOrdersPage /> },
+      { path: "orders/:orderId", element: <AdminOrderDetailPage /> },
+    ],
   },
 ]);
 

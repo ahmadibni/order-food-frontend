@@ -27,7 +27,7 @@ const CartItemList = ({ item }: { item: CartItem }) => {
     >
       <button
         onClick={() => removeFromCart(item.foodId)}
-        className="absolute -top-2.5 -right-2.5 z-10 me-0 bg-gray-50 rounded-full p-1.5 shadow-sm hover:bg-gray-200 transition-colors cursor-pointer"
+        className="hidden sm:block absolute -top-2.5 -right-2.5 z-10 me-0 bg-gray-50 rounded-full p-1.5 shadow-sm hover:bg-gray-200 transition-colors cursor-pointer"
       >
         <RxCross2 className="h-3 w-3 text-gray-500" />
       </button>
