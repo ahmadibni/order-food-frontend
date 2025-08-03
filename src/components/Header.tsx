@@ -31,8 +31,8 @@ const Header = () => {
   const menuItems = [
     { label: "Main Dishes", icon: PiBowlFood, link: "/" },
     { label: "Coffee Based", icon: PiCoffee, link: "/coffee-based" },
-    { label: "See Our Spot", icon: PiMapPin, link: "/see-our-spot" },
     { label: "Beverages", icon: RiDrinksLine, link: "/beverages" },
+    { label: "See Our Spot", icon: PiMapPin, link: "/see-our-spot" },
   ];
 
   return (

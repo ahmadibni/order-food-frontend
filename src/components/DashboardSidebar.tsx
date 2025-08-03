@@ -7,6 +7,7 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
@@ -21,10 +22,19 @@ import {
   Utensils,
 } from "lucide-react";
 import { useLocation } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { getOrders } from "@/services/orderService";
+import { Badge } from "./ui/badge";
 
 const DashboardSidebar = () => {
   const { open } = useSidebar();
   const location = useLocation();
+
+  const { data: order } = useQuery({
+    queryKey: ["admin", "orders", "sidebar"],
+    queryFn: getOrders,
+    select: (data) => data.length,
+  });
 
   const group1 = [
     {
@@ -72,14 +82,14 @@ const DashboardSidebar = () => {
 
   return (
     <Sidebar variant="inset" collapsible="icon">
-      <SidebarHeader className="bg-white">
+      <SidebarHeader className="bg-white p-4 rounded-t-3xl shadow-md">
         <h1
           className={clsx(
             "text-2xl font-bold text-orange-500",
             !open && "hidden"
           )}
         >
-          Makan<span className="font-extrabold text-red-500">Ki'</span>
+          Makan<span className="font-extrabold text-red-500 ">Ki'</span>
         </h1>
         <h1
           className={clsx(
@@ -90,7 +100,7 @@ const DashboardSidebar = () => {
           M
         </h1>
       </SidebarHeader>
-      <SidebarContent className="bg-white">
+      <SidebarContent className="bg-white rounded-b-3xl shadow-md">
         <SidebarGroup>
           <SidebarGroupLabel>Sales & Orders</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -106,6 +116,11 @@ const DashboardSidebar = () => {
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
+                  {item.title === "Orders" && (
+                    <SidebarMenuBadge>
+                      <Badge className="bg-orange-500">{order}</Badge>
+                    </SidebarMenuBadge>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

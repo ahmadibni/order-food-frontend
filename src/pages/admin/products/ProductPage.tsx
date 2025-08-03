@@ -7,7 +7,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -16,7 +15,7 @@ import {
 import { getFoods } from "@/services/foodService";
 import useFoodStore from "@/store/useFoodStore";
 import { useQuery } from "@tanstack/react-query";
-import { CheckCircle, Ellipsis, Pencil, Trash2, XCircle } from "lucide-react";
+import { CheckCircle, EllipsisVertical, Pencil, Trash2, XCircle } from "lucide-react";
 import { useEffect } from "react";
 import { Link } from "react-router";
 
@@ -35,9 +34,8 @@ const AdminProductsPage = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-semibold text-slate-800">Product List</h1>
+      <h1 className="text-2xl font-semibold text-slate-800 mb-4">Product List</h1>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead></TableHead>
@@ -72,7 +70,7 @@ const AdminProductsPage = () => {
               <TableCell>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Ellipsis />
+                    <EllipsisVertical />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem asChild>

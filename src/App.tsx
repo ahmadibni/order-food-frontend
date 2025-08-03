@@ -7,10 +7,10 @@ import CreateOrderPage from "./pages/orders/CreateOrderPage";
 import MyOrderPage from "./pages/orders/MyOrderPage";
 import DashboardLayout from "./layouts/DashboardLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AdminProductsPage from "./pages/admin/products/AdminProductPage";
+import AdminProductsPage from "./pages/admin/products/ProductPage";
 import AdminOrdersPage from "./pages/admin/orders/AdminOrdersPage";
 import AdminOrderDetailPage from "./pages/admin/orders/AdminOrderDetailPage";
-import AdminProductEditPage from "./pages/admin/products/AdminProductEditPage";
+import AdminProductEditPage from "./pages/admin/products/EditPage";
 
 const router = createBrowserRouter([
   {

@@ -20,8 +20,6 @@ const AdminOrdersPage = () => {
     if (data) setOrders(data);
   }, [data, setOrders]);
 
-  console.log(data);
-
   return (
     <div className="p-8">
       <h1 className="text-2xl font-semibold text-slate-800 mb-4">
@@ -29,11 +27,11 @@ const AdminOrdersPage = () => {
       </h1>
       <div className="flex flex-wrap gap-2 mb-4">
         {/* Tombol 'All' */}
-        <button className={`px-3 py-1 rounded-3xl border`}>All</button>
+        <button className={`px-3 py-1 rounded-2xl border`}>All</button>
 
         {/* Tombol untuk setiap status */}
         {Object.entries(ORDER_STATUS).map(([key, value]) => (
-          <button key={key} className={`px-3 py-1 rounded-3xl border`}>
+          <button key={key} className={`px-3 py-1 rounded-2xl border`}>
             {value.label}
           </button>
         ))}
